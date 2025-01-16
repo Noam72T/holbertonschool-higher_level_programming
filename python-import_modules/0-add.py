@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-from add_0 import add
-
 if __name__ == "__main__":
-    """
-
-    Prints the result of the addition between two numbers
-
-    """
-    a = 1
-    b = 2
-    print("{} + {} = {}".format(a, b, add(a, b)))
+	from calculator_1 import add, sub, mul, div
+	a = 10
+	b = 5
+	result = add(a, b)
+	result1 = sub(a, b)
+	result2 = mul(a, b)
+	result3 = div(a, b)
+	print("{} + {} = {}".format(a, b, result))
+	print("{} - {} = {}".format(a, b, result1))
+	print("{} * {} = {}".format(a, b, result2))
+	print("{} / {} = {}".format(a, b, result3))
