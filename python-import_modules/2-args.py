@@ -1,22 +1,20 @@
 #!/usr/bin/python3
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import sys
-    """Prints the argument list passed to the program
 
-    The program takes all the arguments starting from the second
-    and prints the number of arguments and their value
+    # Retrieve command-line arguments, excluding the script name
+    argv = sys.argv[1:]
+    argc = len(argv)
 
-    """
-    av = sys.argv
-    l_av = len(av) - 1
+    # Print the number of arguments
+    if argc == 0:
+        print("0 arguments.")
+    elif argc == 1:
+        print("1 argument:")
+    else:
+        print(f"{argc} arguments:")
 
-    if l_av > 1:
-        print(l_av, 'arguments:')
-        for i in range(1, l_av + 1):
-            print('{:d}: {}'.format(i, av[i]))
-    elif l_av == 1:
-        print(l_av, 'argument:')
-        for i in range(1, l_av + 1):
-            print('{:d}: {}'.format(i, av[i]))
-    elif l_av == 0:
-        print(l_av, 'arguments.')
+    # Print each argument with its position
+    for i, arg in enumerate(argv, start=1):
+        print(f"{i}: {arg}")
