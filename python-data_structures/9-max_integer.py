@@ -1,11 +1,15 @@
 #!/usr/bin/python3
 def max_integer(my_list=[]):
-    if not my_list:  # Check if the list is empty
+    # Return None if the list is empty
+    if len(my_list) == 0:
         return None
 
-    max_num = my_list[0]  # Initialize the maximum as the first element
-    for num in my_list:
-        if num > max_num:  # Update max_num if a larger number is found
-            max_num = num
-    return max_num
+    # Initialize the maximum value with the first element of the list
+    max_value = my_list[0]
 
+    # Iterate through the list to find the maximum value
+    for num in my_list:
+        if num > max_value:
+            max_value = num
+
+    return max_value
