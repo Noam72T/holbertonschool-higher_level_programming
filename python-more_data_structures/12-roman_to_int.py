@@ -1,16 +1,24 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
-    if roman_string is None:
+    # Check if the input is a valid string
+    if not isinstance(roman_string, str) or roman_string is None:
         return 0
-    roman_number = {
-        "I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
-    current_value = roman_number[roman_string[-1]]
-    number = current_value
-    for a in range(len(roman_string) - 1, 0, -1):
-        current_value = roman_number[roman_string[a]]
-        prev_value = roman_number[roman_string[a - 1]]
-        if prev_value < current_value:
-            number -= prev_value
+    
+    # Roman numeral to integer mapping
+    roman_dict = {
+        'I': 1, 'V': 5, 'X': 10, 'L': 50,
+        'C': 100, 'D': 500, 'M': 1000
+    }
+    
+    total = 0
+    length = len(roman_string)
+    
+    for i in range(length):
+        current_value = roman_dict[roman_string[i]]
+        
+        if i + 1 < length and current_value < roman_dict[roman_string[i + 1]]:
+            total -= current_value
         else:
-            number += prev_value
-    return number
+            total += current_value
+    
+    return total
