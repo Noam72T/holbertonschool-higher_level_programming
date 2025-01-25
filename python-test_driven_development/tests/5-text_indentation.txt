@@ -1,39 +1,65 @@
 >>> text_indentation = __import__('5-text_indentation').text_indentation
 
-# Test with a long paragraph containing '.', '?', and ':'
->>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
-... Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
-... Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: \
-... Plus semper voluptatis? Teneo, inquit, finem illi videri nihil dolere. \
-... Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum \
-... rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo \
-... stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum \
-... cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio \
-... beatiorem! Iam ruinas videres""")
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+# Test case 1: Normal usage
+>>> text_indentation("Hello. How are you? I'm fine: thanks.")
+Hello.
 <BLANKLINE>
-Quonam modo?
 <BLANKLINE>
-Utrum igitur tibi litteram videor an totas paginas commovere?
+How are you?
 <BLANKLINE>
-Non autem hoc:
 <BLANKLINE>
-igitur ne illud quidem.
+I'm fine:
 <BLANKLINE>
-Fortasse id optimum, sed ubi illud:
 <BLANKLINE>
-Plus semper voluptatis?
+thanks.
 <BLANKLINE>
-Teneo, inquit, finem illi videri nihil dolere.
 <BLANKLINE>
-Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens.
+
+# Test case 2: Text without punctuation
+>>> text_indentation("This is a test")
+This is a test
+
+# Test case 3: Text with spaces before and after punctuation
+>>> text_indentation("Hello .  How are you  ?  Fine  : Thanks  .")
+Hello.
 <BLANKLINE>
-Si id dicis, vicimus.
 <BLANKLINE>
-Inde sermone vario sex illa a Dipylo stadia confecimus.
+How are you?
 <BLANKLINE>
-Sin aliud quid voles, postea.
 <BLANKLINE>
-Quae animi affectio suum cuique tribuens atque hanc, quam dico.
+Fine:
 <BLANKLINE>
-Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres
+<BLANKLINE>
+Thanks.
+<BLANKLINE>
+<BLANKLINE>
+
+# Test case 4: Empty string
+>>> text_indentation("")
+
+# Test case 5: Non-string input
+>>> text_indentation(12345)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+# Test case 6: Multiple consecutive punctuation marks
+>>> text_indentation("Hello... How are you???")
+Hello.
+<BLANKLINE>
+<BLANKLINE>
+.
+<BLANKLINE>
+<BLANKLINE>
+.
+<BLANKLINE>
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+<BLANKLINE>
+?
+<BLANKLINE>
+<BLANKLINE>
+?
+<BLANKLINE>
+<BLANKLINE>
