@@ -17,14 +17,15 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    # Initialize a variable to store the result
+    # Initialize a result string
     result = ""
     i = 0
+
     while i < len(text):
         char = text[i]
         result += char
 
-        # Check if the character requires two new lines
+        # Add two new lines after '.', '?', or ':'
         if char in ".:?":
             result += "\n\n"
             # Skip any extra spaces after punctuation
@@ -32,10 +33,10 @@ def text_indentation(text):
             while i < len(text) and text[i] == " ":
                 i += 1
             continue
+
         i += 1
 
-    # Strip spaces from the beginning and end of each line
-    lines = [line.strip() for line in result.splitlines()]
-    final_result = "\n".join(lines)
+    # Split lines, remove extra spaces, and join with newlines
+    final_result = "\n".join(line.strip() for line in result.splitlines())
 
     print(final_result)
