@@ -7,27 +7,28 @@ after each occurrence of '.', '?', and ':'.
 
 def text_indentation(text):
     """
-    Prints a text with 2 new lines after each '.', '?', and ':'.
+    This function takes a string as input and prints it, replacing punctuation marks 
+    ".", "?", and ":" with a new line after each of them.
 
     Args:
-        text (str): The input string to be processed and printed.
+        text (str): The text to process.
 
     Raises:
-        TypeError: If the input is not a string.
+        TypeError: If text is not a string.
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
     i = 0
     while i < len(text):
-        char = text[i]
-        # Add the current character to the result
-        print(char, end="")
-
-        # If the character is one of '.', '?', or ':', print two newlines
-        if char in ".?:":
-            print("\n")
-            # Skip any additional spaces after the punctuation mark
-            while i + 1 < len(text) and text[i + 1] == " ":
+        # Print characters one by one
+        print(text[i], end="")
+        
+        # Check if current character is one of the specified punctuation marks
+        if text[i] in ".?:":
+            print("\n")  # Print two new lines after punctuation
+            i += 1  # Skip any following spaces
+            while i < len(text) and text[i] == ' ':
                 i += 1
-        i += 1
+        else:
+            i += 1
