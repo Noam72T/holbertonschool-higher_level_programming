@@ -4,7 +4,6 @@
 This module contains a function that indents text according to specific rules.
 """
 
-
 def text_indentation(text):
     """
     Function that prints a text with two new lines
@@ -16,8 +15,9 @@ def text_indentation(text):
 
     i = 0
     while i < len(text):
-        # Check if the current character is punctuation and print a newline
+        # Remove extra spaces before punctuation marks
         if text[i] in '.?:':
+            # Print punctuation followed by two new lines
             print(text[i], end="\n\n")
             i += 1
             # Skip all spaces after the punctuation mark
