@@ -14,6 +14,7 @@ def text_indentation(text):
     Raises:
         TypeError: If text is not a string.
     """
+
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
@@ -36,7 +37,8 @@ def text_indentation(text):
 
         i += 1
 
-    # Split lines, remove extra spaces, and join with newlines
-    final_result = "\n".join(line.strip() for line in result.splitlines())
+    # Strip trailing blank lines that might be added at the end
+    final_result = "\n".join(line.strip() for line in result.splitlines()
+                             if line.strip() != "")
 
     print(final_result)
