@@ -7,32 +7,25 @@ la fonction matrix_divided.
 
 def matrix_divided(matrix, div):
     """
-    Divise tous les éléments
-    d'une matrice par un nombre
-    et arrondit à 2 décimales.
+    Divides all elements of a matrix by a divisor.
 
-    Arguments :
-        matrix : Liste de listes contenant
-        des entiers ou des flottants.
-        div : Nombre utilisé pour
-        diviser les éléments de la matrice
-              (entier ou flottant).
+    Args:
+        matrix: A list of lists of integers or floats.
+        div: The divisor, must be a non-zero integer or float.
 
-    Retourne :
-        Nouvelle matrice avec les
-        éléments divisés par div,
-        arrondis à 2 décimales.
+    Returns:
+        A new matrix where all elements are divided by div, rounded
+        to 2 decimal places.
 
-    Exceptions :
-        TypeError : Si matrix n'est pas
-        une liste de listes de nombres,
-                    si les lignes
-                    n'ont pas la même taille,
-                    ou si div n'est pas un nombre.
-        ZeroDivisionError : Si div est égal à 0.
+    Raises:
+        TypeError: If matrix is not a list of lists of integers or floats,
+                   or if div is not an integer or float,
+                   or if rows of the matrix are not of the same size.
+        ZeroDivisionError: If div is 0.
     """
     # Check if matrix is a list of lists of integers or floats
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
+    if (not isinstance(matrix, list) or
+            not all(isinstance(row, list) for row in matrix)):
         raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
 
     # Check for empty matrix or empty sublists
