@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-
 """
 This module contains a function that
 prints My name is <first name> <last name>.
 """
+
 
 def say_my_name(first_name, last_name=""):
     """
@@ -16,5 +16,5 @@ def say_my_name(first_name, last_name=""):
     if not isinstance(last_name, str):
         raise TypeError("last_name must be a string")
 
-    # Ensure that the printed output is correctly formatted with spaces and no trailing spaces
-    print("My name is {} {}".format(first_name, last_name).strip())
+    # Add a space after the last name if needed
+    print("My name is {} {}".format(first_name, last_name), end=" ")
