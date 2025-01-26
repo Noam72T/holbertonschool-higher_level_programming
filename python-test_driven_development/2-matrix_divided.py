@@ -35,9 +35,10 @@ def matrix_divided(matrix, div):
             "matrix must be a matrix (list of lists) of integers/floats")
 
     # Ensure all elements in the matrix are integers or floats
-    if not all(all(isinstance(el, (int, float)) for el in row) for row in matrix):
-        raise TypeError(
-            "matrix must be a matrix (list of lists) of integers/floats")
+    for row in matrix:
+        if not all(isinstance(el, (int, float)) for el in row):
+            raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+
 
     # Ensure all rows in the matrix are of the same size
     row_length = len(matrix[0])
