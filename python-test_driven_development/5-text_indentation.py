@@ -1,29 +1,38 @@
 #!/usr/bin/python3
+"""
+This module provides a function to format text with specific indentation rules.
+"""
 
-"""
-This module contains a function that indents text according to specific rules.
-"""
 
 def text_indentation(text):
     """
-    Function that prints a text with two new lines
-    after each of these characters:
-    `.`, `?`, `:`.
+    Prints a text with 2 new lines after each of these characters: '.', '?', and ':'.
+
+    Args:
+        text (str): The input text to be formatted.
+
+    Raises:
+        TypeError: If text is not a string.
+
+    Returns:
+        None: Prints the formatted text.
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
+    result = ""
     i = 0
+
     while i < len(text):
-        # Remove extra spaces before punctuation marks
-        if text[i] in '.?:':
-            # Print punctuation followed by two new lines
-            print(text[i], end="\n\n")
+        result += text[i]
+        if text[i] in ".?:":
+            result += "\n\n"
+            # Skip spaces after punctuation
             i += 1
-            # Skip all spaces after the punctuation mark
             while i < len(text) and text[i] == " ":
                 i += 1
-        else:
-            # Print the current character if it's not punctuation
-            print(text[i], end="")
-            i += 1
+            continue
+        i += 1
+
+    # Print the formatted result, removing trailing spaces in lines
+    print("\n".join(line.strip() for line in result.split("\n")))
