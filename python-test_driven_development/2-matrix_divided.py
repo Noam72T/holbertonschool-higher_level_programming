@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-    Divides all elements of a matrix by a divisor.
-    """
+Divides all elements of a matrix by a divisor.
+"""
 
 
 def matrix_divided(matrix, div):
