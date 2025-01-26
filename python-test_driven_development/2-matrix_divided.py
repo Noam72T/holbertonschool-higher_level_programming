@@ -26,15 +26,16 @@ def matrix_divided(matrix, div):
     # Check if matrix is a list of lists of integers or floats
     if (not isinstance(matrix, list) or
             not all(isinstance(row, list) for row in matrix)):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError("matrix must be a matrix of integers/floats")
 
     # Check for empty matrix or empty sublists
     if len(matrix) == 0 or any(len(row) == 0 for row in matrix):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError("matrix must be a matrix of integers/floats")
 
     # Check if all elements in the matrix are integers or floats
-    if not all(all(isinstance(el, (int, float)) for el in row) for row in matrix):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+    if not all(all(isinstance(el, (int, float))
+                   for el in row) for row in matrix):
+        raise TypeError("matrix must be a matrix of integers/floats")
 
     # Check if all rows have the same size
     row_length = len(matrix[0])
