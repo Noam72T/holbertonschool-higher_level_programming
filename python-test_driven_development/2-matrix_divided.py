@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-This module defines a function to divide all elements of a matrix.
-"""
+    Divides all elements of a matrix by a divisor.
+    """
 
 
 def matrix_divided(matrix, div):
@@ -9,24 +9,25 @@ def matrix_divided(matrix, div):
     Divides all elements of a matrix by a divisor.
 
     Args:
-        matrix (list): A list of lists of integers or floats.
-        div (int/float): The divisor, must be a non-zero integer or float.
+        matrix: A list of lists of integers or floats.
+        div: The divisor, must be a non-zero integer or float.
 
     Returns:
-        list: A new matrix with all elements divided by div, rounded to 2 decimals.
+        A new matrix where all elements are divided by div, rounded to 2 decimal places.
 
     Raises:
         TypeError: If matrix is not a list of lists of integers or floats,
-                   if rows of the matrix are not of the same size,
-                   or if div is not a number.
+                   or if div is not an integer or float,
+                   or if rows of the matrix are not of the same size.
         ZeroDivisionError: If div is 0.
     """
     # Check if matrix is a list of lists of integers or floats
     if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
-
+        raise TypeError(
+            "matrix must be a matrix (list of lists) of integers/floats")
     if not all(all(isinstance(el, (int, float)) for el in row) for row in matrix):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError(
+            "matrix must be a matrix (list of lists) of integers/floats")
 
     # Check if all rows have the same size
     row_length = len(matrix[0])
