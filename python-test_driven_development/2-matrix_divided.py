@@ -1,26 +1,33 @@
 #!/usr/bin/python3
 """
-Ce module contient la fonction matrix_divided.
+Ce module contient
+la fonction matrix_divided.
 """
 
 
 def matrix_divided(matrix, div):
     """
-    Divise tous les éléments d'une matrice par un nombre
+    Divise tous les éléments
+    d'une matrice par un nombre
     et arrondit à 2 décimales.
 
     Arguments :
-        matrix : Liste de listes contenant des entiers ou des flottants.
-        div : Nombre utilisé pour diviser les éléments de la matrice
+        matrix : Liste de listes contenant
+        des entiers ou des flottants.
+        div : Nombre utilisé pour
+        diviser les éléments de la matrice
               (entier ou flottant).
 
     Retourne :
-        Nouvelle matrice avec les éléments divisés par div,
+        Nouvelle matrice avec les
+        éléments divisés par div,
         arrondis à 2 décimales.
 
     Exceptions :
-        TypeError : Si matrix n'est pas une liste de listes de nombres,
-                    si les lignes n'ont pas la même taille,
+        TypeError : Si matrix n'est pas
+        une liste de listes de nombres,
+                    si les lignes
+                    n'ont pas la même taille,
                     ou si div n'est pas un nombre.
         ZeroDivisionError : Si div est égal à 0.
     """
