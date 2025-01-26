@@ -6,7 +6,7 @@ My name is John Smith
 
 # Test case 2: Only first name
 >>> say_my_name("Bob")
-My name is Bob
+My name is Bob 
 
 # Test case 3: First name is not a string
 >>> say_my_name(12, "White")
