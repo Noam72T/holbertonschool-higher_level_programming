@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+This module provides a function to format text with specific indentation rules.
+"""
+
+
 def text_indentation(text):
     """
     Indente un texte en fonction des caractères de ponctuation suivants : .,
