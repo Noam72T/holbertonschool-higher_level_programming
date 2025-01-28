@@ -5,7 +5,7 @@ Defines a class square
 """
 
 
-class Sqaure:
+class Square:
     """
     Represent a square.
 
