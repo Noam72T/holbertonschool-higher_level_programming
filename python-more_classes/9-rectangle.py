@@ -6,7 +6,7 @@ Defines a class rectangle
 
 
 class Rectangle:
-    # Class attributes
+    # Public class attributes
     number_of_instances = 0
     print_symbol = '#'
 
@@ -14,9 +14,9 @@ class Rectangle:
         # Private instance attributes
         self.__width = 0
         self.__height = 0
-        # Initializing the number of instances
+        # Increment the number of instances when a new object is created
         Rectangle.number_of_instances += 1
-        # Setting width and height using the setters
+        # Use the setter to initialize width and height
         self.width = width
         self.height = height
 
