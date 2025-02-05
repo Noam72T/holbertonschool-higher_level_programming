@@ -13,7 +13,7 @@ class BaseGeometry:
         """Validate a parameter as an integer.
 
         Args:
-            name (str): The name of the parameter.
+            name (str): The name of the parameters.
             value (int): The parameter to validate.
         Raises:
             TypeError: If value is not an integer.
