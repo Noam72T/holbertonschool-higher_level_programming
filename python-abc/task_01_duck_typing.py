@@ -97,10 +97,5 @@ def shape_info(shape):
 if __name__ == "__main__":
     circle = Circle(5)
     rectangle = Rectangle(4, 7)
-
-    print("Circle:")
-    shape_info(circle)  # Should print the area and perimeter of the circle
-
-    print("\nRectangle:")
-    # Should print the area and perimeter of the rectangle
+    shape_info(circle)
     shape_info(rectangle)
