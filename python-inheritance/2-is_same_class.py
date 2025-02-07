@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""Defines a module with boolean values"""
+'''Module 2-is_same_class'''
 
 
 def is_same_class(obj, a_class):
-    """Returns True if the object is exactly an instance
-    of the specific class, otherwise False"""
-
+    """Returns True if obj is exactly an instance of
+    a_class, otherwise False."""
     return type(obj) is a_class
