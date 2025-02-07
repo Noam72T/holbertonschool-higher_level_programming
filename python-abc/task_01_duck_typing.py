@@ -53,12 +53,10 @@ def shape_info(shape):
 
 # Testing the classes and the shape_info function
 if __name__ == "__main__":
-    # Create a Circle with a radius of 5
-    circle = Circle(5)
-    print("Circle Info:")
-    shape_info(circle)
-
-    print("\nRectangle Info:")
-    # Create a Rectangle with a width of 3 and height of 4
-    rectangle = Rectangle(3, 4)
-    shape_info(rectangle)
+    try:
+        circle = Circle(5)
+        rectangle = Rectangle(4, 6)
+        shape_info(circle)
+        shape_info(rectangle)
+    except ValueError as e:
+        print(f"Error: {e}")
