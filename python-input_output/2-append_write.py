@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+'''Function to Append File'''
 
 def append_write(filename="", text=""):
     """Add string and return number."""
