@@ -6,7 +6,7 @@ class Student:
     def __init__(self, first_name, last_name, age):
         """
         Initialise une nouvelle instance de Student.
-        
+
         Args:
             first_name (str): Name of the student.
             last_name (str): Last name of the student.
@@ -19,12 +19,12 @@ class Student:
     def to_json(self, attrs=None):
         """
         Return a JSON representation of the instance.
-        
+
         Args:
             attrs (list): List of attributes to	return.
-        
+
         Returns:
-            dict: Dictionnary .
+            dict: Dictionnary.
         """
         if attrs is None:
             return self.__dict__
