@@ -1,26 +1,33 @@
 #!/usr/bin/python3
 '''Class Student'''
 
+
 class Student:
+    """Student"""
     def __init__(self, first_name, last_name, age):
-        """Initialize the student"""
+        """
+        Initialise une nouvelle instance de Student.
+
+        Args:
+            first_name (str): Name of the student.
+            last_name (str): Last name of the student.
+            age (int): Age of the student
+        """
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
-        """Return the dictionary description"""
-        class_d = self.__dict__
-        sel_d = dict()
+        """
+        Return a JSON representation of the instance.
 
-        if type(attrs) is list:
-            for attr in attrs:
-                if type(attr) is not str:
-                    return class_d
+        Args:
+            attrs (list): List of attributes to	return.
 
-                if attr in class_d:
-                    sel_d[attr] = class_d[attr]
-
-            return sel_d
-
-        return class_d
+        Returns:
+            dict: Dictionnary.
+        """
+        if attrs is None:
+            return self.__dict__
+        else:
+            return {key: value for key, value in self.__dict__.items() if key in attrs}
