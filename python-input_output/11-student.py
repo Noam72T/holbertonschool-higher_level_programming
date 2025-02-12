@@ -3,13 +3,10 @@
 
 
 class Student:
-    """Student"""
-    
-class Student:
     def __init__(self, first_name, last_name, age):
         """
        Initializes a new instance of Student.
-        
+
         Args:
             first_name (str): Student's first name.
             last_name (str): Student's last name.
@@ -22,10 +19,10 @@ class Student:
     def to_json(self, attrs=None):
         """
         Retrieves a dictionary representation of the Student instance.
-        
+
         Args:
             attrs (list): List of strings representing the names of attributes to be retrieved.
-        
+
         Returns:
             dict: A dictionary containing the attributes of the instance.
         """
@@ -37,7 +34,7 @@ class Student:
     def reload_from_json(self, json):
         """
         Replaces all attributes of the Student instance with those provided in the json dictionary.
-        
+
         Args dictionary:
             json (dict): A dictionary containing the instance's new attributes.
         """
