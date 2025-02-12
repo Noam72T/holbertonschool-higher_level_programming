@@ -1,25 +1,22 @@
 #!/usr/bin/python3
-'''Class Student'''
+'''Pascal's Triangle'''
 
 
-class Student:
-    def __init__(self, first_name, last_name, age):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.age = age
+def pascal_triangle(n):
+    """Returns a list of lists representing Pascal's triangle up to level n."""
+    if n <= 0:
+        return []
 
-    def to_json(self, attrs=None):
-        class_d = self.__dict__
-        sel_d = dict()
+    triangle = [[1]]
 
-        if type(attrs) is list:
-            for attr in attrs:
-                if type(attr) is not str:
-                    return class_d
+    for i in range(1, n):
+        prev_row = triangle[-1]
+        new_row = [1]
 
-                if attr in class_d:
-                    sel_d[attr] = class_d[attr]
+        for j in range(1, len(prev_row)):
+            new_row.append(prev_row[j - 1] + prev_row[j])
 
-            return sel_d
+        new_row.append(1)
+        triangle.append(new_row)
 
-        return class_d
+    return triangle
