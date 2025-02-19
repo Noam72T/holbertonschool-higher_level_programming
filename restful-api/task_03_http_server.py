@@ -2,9 +2,10 @@
 """Module to implement http.server module"""
 import http.server
 import json
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
-class HTTPHandler(http.server.BaseHTTPRequestHandler):
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     """Simple Handler class inherited from BaseHTTPRequestHandler"""
 
     def do_GET(self):
@@ -52,8 +53,8 @@ class HTTPHandler(http.server.BaseHTTPRequestHandler):
             self.wfile.write('404 Not Found'.encode())
 
 
-if __name__ == '__main__':
-    """Server initialization"""
+if __name__ == "__main__":
     server_address = ('', 8000)
-    httpserver = http.server.HTTPServer(server_address, HTTPHandler)
-    httpserver.serve_forever()
+    httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
+    print("Starting server on port 8000...")
+    httpd.serve_forever()
