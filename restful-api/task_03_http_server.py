@@ -1,9 +1,12 @@
+"""Module to implement http.server module"""
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    """Simple Handler class inherited from BaseHTTPRequestHandler"""
     def do_GET(self):
+        """Method to handle GET requests"""
         if self.path == "/":
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
