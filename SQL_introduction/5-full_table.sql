@@ -1,2 +1,4 @@
--- Print All Description of the table first_table
-SHOW COLUMNS FROM first_table;
+-- This script prints the structure of the table first_table.
+
+-- Show the create table statement of first_table
+SHOW CREATE TABLE first_table;

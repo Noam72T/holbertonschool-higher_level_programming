@@ -1,4 +1,4 @@
--- This script lists all tables of a database.
+-- This script lists all the tables of the specified database.
 
--- Show all tables in the current database
-SHOW TABLES FROM;
+-- List all tables in the specified database
+SHOW TABLES;
