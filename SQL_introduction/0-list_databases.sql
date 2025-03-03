@@ -1,3 +1,3 @@
---- This script lists all databases.
---- Show All databases
+-- This script lists all databases.
+
 SHOW DATABASES;
