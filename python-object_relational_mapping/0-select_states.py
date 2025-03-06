@@ -28,6 +28,5 @@ def list_states():
     cursor.close()
     db.close()
 
-# Ensure the script only runs when it is executed directly, not when imported
 if __name__ == "__main__":
     list_states()
