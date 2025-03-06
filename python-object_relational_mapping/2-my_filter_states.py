@@ -12,7 +12,7 @@ if __name__ == "__main__":
         passwd=sys.argv[2],
         db=sys.argv[3]
     )
-    cur = db.cursor
+    cur = db.cursor()
     cur = db.execute(
         "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
         (sys.aragv[4],)
