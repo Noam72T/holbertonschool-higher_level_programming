@@ -2,6 +2,7 @@
 """Module listing all states from the database"""
 import MySQLdb
 import sys
+import argv
 
 if __name__ == "__main__":
     db = MySQLdb.connect(host="localhost", port=3306,
