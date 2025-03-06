@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     # Exécution de la requête avec un paramètre de manière sécurisée
     cur.execute(
-        "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
+        "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC",
         (argv[4],)
     )
 
@@ -23,4 +23,3 @@ if __name__ == "__main__":
     # Fermeture du curseur et de la connexion
     cur.close()
     db.close()
-
