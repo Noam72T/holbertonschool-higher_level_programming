@@ -1,30 +1,26 @@
 #!/usr/bin/python3
-"""Displays all values in the states table where name matches the argument."""
+"""Module listing all states matching a name from the database"""
 
 import MySQLdb
-import sys
+from sys import argv
 
 if __name__ == "__main__":
-    db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=sys.argv[1],
-        passwd=sys.argv[2],
-        db=sys.argv[3]
-    )
-
+    # Connexion à la base de données
+    db = MySQLdb.connect("localhost", argv[1], argv[2], argv[3])
     cur = db.cursor()
 
-    # Exécution de la requête avec le paramètre %s
+    # Exécution de la requête avec un paramètre de manière sécurisée
     cur.execute(
         "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
-        (sys.argv[4],)
+        (argv[4],)
     )
 
-    # Affichage des résultats
-    for row in cur.fetchall():
+    # Récupération et affichage des résultats
+    rows = cur.fetchall()
+    for row in rows:
         print(row)
 
     # Fermeture du curseur et de la connexion
     cur.close()
     db.close()
+
