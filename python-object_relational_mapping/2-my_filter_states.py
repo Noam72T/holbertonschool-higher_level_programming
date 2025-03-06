@@ -12,13 +12,19 @@ if __name__ == "__main__":
         passwd=sys.argv[2],
         db=sys.argv[3]
     )
+
     cur = db.cursor()
-    cur = db.execute(
+
+    # Exécution de la requête avec le paramètre %s
+    cur.execute(
         "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
-        (sys.aragv[4],)
+        (sys.argv[4],)
     )
+
+    # Affichage des résultats
     for row in cur.fetchall():
         print(row)
 
+    # Fermeture du curseur et de la connexion
     cur.close()
     db.close()
