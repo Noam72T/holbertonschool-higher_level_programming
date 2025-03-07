@@ -19,8 +19,8 @@ if __name__ == "__main__":
     # Create cursor and execute query with parameterized input
     cur = db.cursor()
     cur.execute(
-        "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
-        (argv[4],)
+        "SELECT * FROM states WHERE name = %(state)s ORDER BY id ASC",
+        ({'state': argv[4]})
     )
 
     # Fetch and display results
