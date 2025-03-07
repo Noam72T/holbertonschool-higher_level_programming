@@ -1,37 +1,35 @@
 #!/usr/bin/python3
+"""Start link class to table in database
 """
-Script that adds the State object "Louisiana" to the database.
-"""
-import sys
+from sys import argv
 from model_state import Base, State
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session
 
 if __name__ == "__main__":
-    # Get command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
-    # Create engine
+    # Création d'une instance de moteur SQLAlchemy
     engine = create_engine(
-        f'mysql+mysqldb://{username}:{password}@localhost/{database}',
-        pool_pre_ping=True
+        "mysql+mysqldb://{}:{}@localhost/{}".format(argv[1], argv[2], argv[3]),
+        pool_pre_ping=True,
     )
 
-    # Create session
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    # Création des tables dans la base de données
+    Base.metadata.create_all(engine)
 
-    # Create new state
-    new_state = State(name="Louisiana")
+    # Ouverture d'une session avec la base de données
+    session = Session(engine)
 
-    # Add and commit the new state
+    # Création d'un nouvel objet "State" avec le nom 'Louisiana'
+    new_state = State(name='Louisiana')
+
+    # Ajout de l'objet "new_state" à la session
     session.add(new_state)
+
+    # Engagement de la session pour enregistrer le nouvel état
     session.commit()
 
-    # Print the new state's id
+    # Affichage de l'id du nouvel état ajouté
     print(new_state.id)
 
-    # Close session
+    # Fermeture de la session après la fin de l'exécution
     session.close()

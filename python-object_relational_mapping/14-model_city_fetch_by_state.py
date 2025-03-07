@@ -1,35 +1,31 @@
 #!/usr/bin/python3
-"""
-Script that prints all City objects from the database.
-"""
-import sys
+"""Module joining 2 tables"""
 from model_state import Base, State
 from model_city import City
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session
+from sys import argv
 
 if __name__ == "__main__":
-    # Get command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
-    # Create engine
+    # Création d'une instance de moteur SQLAlchemy
     engine = create_engine(
-        f'mysql+mysqldb://{username}:{password}@localhost/{database}',
-        pool_pre_ping=True
+        "mysql+mysqldb://{}:{}@localhost/{}".format(argv[1], argv[2], argv[3]),
+        pool_pre_ping=True,
     )
 
-    # Create session
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    # Création des tables dans la base de données
+    Base.metadata.create_all(engine)
 
-    # Query all cities with their states
-    cities = session.query(City, State).join(State).order_by(City.id).all()
+    # Ouverture d'une session avec la base de données
+    session = Session(engine)
 
-    # Print results
-    for city, state in cities:
-        print(f"{state.name}: ({city.id}) {city.name}")
+    # Requête pour joindre les tables City et State en utilisant l'attribut
+    # de clé étrangère, triée par l'ID de la ville (City.id),
+    # et affichage des résultats
+    for city, state in session.query(
+            City, State).join(State).order_by(City.id.asc()).all():
+        # Affiche le nom de l'état et l'ID et le nom de la ville associée
+        print(f'{state.name}: ({city.id}) {city.name}')
 
-    # Close session
+    # Fermeture de la session après la fin de l'exécution
     session.close()

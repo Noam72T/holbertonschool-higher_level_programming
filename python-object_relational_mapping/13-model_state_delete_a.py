@@ -1,35 +1,31 @@
 #!/usr/bin/python3
+"""Start link class to table in database
 """
-Script that deletes all State objects with a name containing the letter 'a' from the database.
-"""
-import sys
+from sys import argv
 from model_state import Base, State
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session
 
 if __name__ == "__main__":
-    # Get command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
-    # Create engine
+    # Création d'une instance de moteur SQLAlchemy
     engine = create_engine(
-        f'mysql+mysqldb://{username}:{password}@localhost/{database}',
-        pool_pre_ping=True
+        "mysql+mysqldb://{}:{}@localhost/{}".format(argv[1], argv[2], argv[3]),
+        pool_pre_ping=True,
     )
 
-    # Create session
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    # Création des tables dans la base de données
+    Base.metadata.create_all(engine)
 
-    # Query states containing 'a'
-    states = session.query(State).filter(State.name.like('%a%')).all()
+    # Ouverture d'une session avec la base de données
+    session = Session(engine)
 
-    # Delete states
-    for state in states:
+    # Parcours des états dont le nom contient la lettre 'a'
+    for state in session.query(State).filter(State.name.contains('a')):
+        # Suppression de chaque état trouvé
         session.delete(state)
+
+    # Engagement de la session pour enregistrer les suppressions
     session.commit()
 
-    # Close session
+    # Fermeture de la session après la fin de l'exécution
     session.close()

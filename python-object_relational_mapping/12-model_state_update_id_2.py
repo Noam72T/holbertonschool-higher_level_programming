@@ -1,35 +1,32 @@
 #!/usr/bin/python3
+"""Start link class to table in database
 """
-Script that changes the name of a State object from the database.
-"""
-import sys
+from sys import argv
 from model_state import Base, State
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session
 
 if __name__ == "__main__":
-    # Get command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
-    # Create engine
+    # Création d'une instance de moteur SQLAlchemy
     engine = create_engine(
-        f'mysql+mysqldb://{username}:{password}@localhost/{database}',
-        pool_pre_ping=True
+        "mysql+mysqldb://{}:{}@localhost/{}".format(argv[1], argv[2], argv[3]),
+        pool_pre_ping=True,
     )
 
-    # Create session
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    # Création des tables dans la base de données
+    Base.metadata.create_all(engine)
 
-    # Query state with id = 2
-    state = session.query(State).filter(State.id == 2).first()
+    # Ouverture d'une session avec la base de données
+    session = Session(engine)
 
-    # Update state name
-    if state:
-        state.name = "New Mexico"
-        session.commit()
+    # Recherche du premier état dont l'id est 2
+    state = session.query(State).filter(State.id.like(2)).first()
 
-    # Close session
+    # Modification du nom de l'état trouvé en 'New Mexico'
+    state.name = 'New Mexico'
+
+    # Engagement de la session pour enregistrer le nouvel état
+    session.commit()
+
+    # Fermeture de la session après la fin de l'exécution
     session.close()

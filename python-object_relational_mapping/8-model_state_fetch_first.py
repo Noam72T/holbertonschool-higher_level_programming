@@ -1,36 +1,32 @@
 #!/usr/bin/python3
+"""Start link class to table in database
 """
-Script that prints the first State object from the database.
-"""
-import sys
+from sys import argv
 from model_state import Base, State
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session
 
 if __name__ == "__main__":
-    # Get command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
-    # Create engine
+    # Création d'une instance de moteur SQLAlchemy
     engine = create_engine(
-        f'mysql+mysqldb://{username}:{password}@localhost/{database}',
-        pool_pre_ping=True
+        "mysql+mysqldb://{}:{}@localhost/{}".format(argv[1], argv[2], argv[3]),
+        pool_pre_ping=True,
     )
 
-    # Create session
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    # Création des tables dans la base de données
+    Base.metadata.create_all(engine)
 
-    # Query first state
-    first_state = session.query(State).order_by(State.id).first()
+    # Ouverture d'une session avec la base de données
+    session = Session(engine)
 
-    # Print result
-    if first_state:
-        print(f"{first_state.id}: {first_state.name}")
+    # Récupère le premier état (State) de la base de données, trié par son id
+    state = session.query(State).order_by(State.id).first()
+
+    # Vérifie si aucun état n'a été trouvé
+    if state is None:
+        print('Nothing')
     else:
-        print("Nothing")
+        print("{}: {}".format(state.id, state.name))
 
-    # Close session
+    # Fermeture de la session après la fin de l'exécution
     session.close()
