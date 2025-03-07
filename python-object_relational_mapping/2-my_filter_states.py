@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module listing all Arizona name from the database"""
+"""Module listing states from the database that match the name argument"""
 import MySQLdb
 from sys import argv
 
@@ -11,7 +11,6 @@ if __name__ == "__main__":
         .format(argv[4]))
     rows = cur.fetchall()
     for row in rows:
-        if row[1] == argv[4]:
-            print(row)
+        print(row)
     cur.close()
     db.close()
