@@ -34,7 +34,8 @@ if __name__ == "__main__":
 
     # Print results
     for row in rows:
-        print(row)
+        if row[1] == state_name:
+            print(row)
 
     # Close cursor and database connection
     cur.close()
